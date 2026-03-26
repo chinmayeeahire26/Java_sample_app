@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            background: #f4faff;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 2.5rem auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(0, 102, 161, 0.10);
+            padding: 2rem 2.5rem 2.5rem 2.5rem;
+        }
+        h1 {
+            color: #0066a1;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        th, td {
+            padding: 0.9rem 0.5rem;
+            text-align: left;
+        }
+        th {
+            background: #00a1e4;
+            color: #fff;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background: #f6f6f6;
+        }
+        .total-row td {
+            font-weight: bold;
+            color: #0066a1;
+            font-size: 1.1rem;
+        }
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(90deg, #0066a1 0%, #00a1e4 100%);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .checkout-btn:hover {
+            background: linear-gradient(90deg, #00a1e4 0%, #0066a1 100%);
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #0066a1;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Cart</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${cart.items}">
+                    <td th:text="${item.name}"></td>
+                    <td>$<span th:text="${item.price}"></span></td>
+                </tr>
+                <tr class="total-row">
+                    <td>Total</td>
+                    <td>$<span th:text="${cart.totalPrice}"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <form th:action="@{/shipping}" method="post">
+            <button class="checkout-btn" type="submit">Proceed to Checkout</button>
+        </form>
+        <a href="/home" class="back-link">&larr; Continue Shopping</a>
+    </div>
+</body>
+</html>

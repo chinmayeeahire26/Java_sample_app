@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Home</title>
+    <style>
+        body {
+            background: #f4faff;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(90deg, #0066a1 0%, #00a1e4 100%);
+            color: #fff;
+            padding: 1.5rem 0 1rem 0;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            box-shadow: 0 2px 8px rgba(0,102,161,0.08);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 4px 16px 0 rgba(0, 102, 161, 0.10);
+            padding: 1.5rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border: 1px solid #00a1e4;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .product-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 8px 32px 0 rgba(0, 102, 161, 0.18);
+        }
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0066a1;
+            margin-bottom: 0.5rem;
+        }
+        .product-desc {
+            color: #555;
+            font-size: 1rem;
+            margin-bottom: 0.7rem;
+        }
+        .product-price {
+            font-size: 1.1rem;
+            color: #00a1e4;
+            margin-bottom: 1rem;
+        }
+        form {
+            width: 100%;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 0.7rem;
+            background: linear-gradient(90deg, #0066a1 0%, #00a1e4 100%);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button[type="submit"]:hover {
+            background: linear-gradient(90deg, #00a1e4 0%, #0066a1 100%);
+        }
+        footer {
+            background: #0066a1;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+        }
+        .cart-link {
+            position: absolute;
+            right: 2rem;
+            top: 2rem;
+            background: #fff;
+            color: #0066a1;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,102,161,0.10);
+            border: 1px solid #00a1e4;
+            transition: background 0.2s, color 0.2s;
+        }
+        .cart-link:hover {
+            background: #00a1e4;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Shopping Cart
+        <a href="/cart" class="cart-link">View Cart</a>
+    </header>
+    <main>
+        <div class="product-grid">
+            <th:block th:each="product : ${products}">
+                <div class="product-card">
+                    <div class="product-title" th:text="${product.name}"></div>
+                    <div class="product-desc" th:text="${product.description}"></div>
+                    <div class="product-price">$<span th:text="${product.price}"></span></div>
+                    <form th:action="@{/cart/add}" method="post">
+                        <input type="hidden" name="productId" th:value="${product.id}" />
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                </div>
+            </th:block>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 Shopping Cart Application
+    </footer>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Information</title>
+    <style>
+        body {
+            background: #f4faff;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 3rem auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(0, 102, 161, 0.10);
+            padding: 2.5rem 2rem 2rem 2rem;
+        }
+        h1 {
+            color: #0066a1;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.4rem;
+            color: #0066a1;
+            font-weight: 500;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #00a1e4;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(90deg, #0066a1 0%, #00a1e4 100%);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .submit-btn:hover {
+            background: linear-gradient(90deg, #00a1e4 0%, #0066a1 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Shipping Information</h1>
+        <form action="#" th:action="@{/order/submit}" method="post">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required>
+
+            <label for="zip">Zip Code:</label>
+            <input type="text" id="zip" name="zip" required>
+
+            <button class="submit-btn" type="submit">Submit Order</button>
+        </form>
+    </div>
+</body>
+</html>
